@@ -17,7 +17,7 @@
 - type: startingGear
   id: WFReporterGear
   equipment:
-    head: ClothingHeadHemetRep
+    head: ClothingHeadHatFedoraGrey
     innerClothing: ClothingUniformJumpsuitSecBlue
     outerClothing: ClothingOuterVestPress
     shoes: ClothingShoesColorWhite

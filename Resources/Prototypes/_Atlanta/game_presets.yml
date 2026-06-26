@@ -24,3 +24,14 @@
   - ExtendedLateJoinRule
   - SupplyPointsRule
   - MistGameRule
+
+- type: gamePreset
+  id: WesternFront
+  alias:
+  - wf
+  - westernfront
+  name: Западный Фронт
+  description: Две команды — ВСУ и ВСРФ — сражаются насмерть. Раунд заканчивается, когда все игроки одной из сторон погибают.
+  showInVote: true
+  rules:
+  - WesternFrontRule

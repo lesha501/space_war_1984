@@ -16,7 +16,7 @@
     head: ClothingHeadHelmetWhite
     innerClothing: ClothingUniformJumpsuitOldForm
     outerClothing: ClothingOuterArmorBaseRatnik
-    shoes: ClothingShoesBootsMercFilled
+    shoes: ClothingShoesBootsMerc
     belt: ClothingBeltMercWebbing
     neck: PovazkaWhite
   storage:
@@ -50,7 +50,7 @@
     head: ClothingHeadHelmetRf
     innerClothing: ClothingUniformJumpsuitRuForm
     outerClothing: ClothingOuterArmorBaseRatnik
-    shoes: ClothingShoesBootsJackFiller
+    shoes: ClothingShoesBootsJack
     belt: ClothingBeltSecurityWebbing
     neck: PovazkaWhite
     mask: ClothingMaskNeckGaiter
@@ -89,7 +89,7 @@
     head: ClothingHeadHelmetWhite
     innerClothing: ClothingUniformJumpsuitBushlat
     outerClothing: ClothingOuterVestWebMerc
-    shoes: ClothingShoesBootsMercFilled
+    shoes: ClothingShoesBootsMerc
     belt: ClothingBeltMercWebbing
     gloves: ClothingHandsMercGlovesCombat
     neck: PovazkaWhite
@@ -128,7 +128,7 @@
     head: ClothingHeadHelmetWhite
     innerClothing: ClothingUniformJumpsuitOldForm
     outerClothing: ClothingOuterVestWebMerc
-    shoes: ClothingShoesBootsMercFiller
+    shoes: ClothingShoesBootsMerc
     belt: ClothingBeltMercWebbing
     neck: PovazkaWhite
   storage:

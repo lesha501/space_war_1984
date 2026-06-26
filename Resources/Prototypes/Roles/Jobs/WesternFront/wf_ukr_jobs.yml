@@ -16,7 +16,7 @@
     head: ClothingHeadHelmetNato
     innerClothing: ClothingUniformJumpsuiMultic
     outerClothing: ClothingOuterArmorBaseStoormVsu
-    shoes: ClothingShoesBootsMercFilled
+    shoes: ClothingShoesBootsMerc
     belt: ClothingBeltMercWebbing
     neck: PovazkaBlue
   storage:
@@ -53,7 +53,7 @@
     head: ClothingHeadHelmetRed
     innerClothing: ClothingUniformJumpsuiMultic
     outerClothing: ClothingOuterVestWebMerc
-    shoes: ClothingShoesBootsMercFilled
+    shoes: ClothingShoesBootsMerc
     belt: ClothingBeltMercWebbing
     neck: PovazkaBlue
   storage:
@@ -90,7 +90,7 @@
     head: ClothingHeadHelmetVSUtact
     innerClothing: ClothingUniformJumpsuitOldForm
     outerClothing: ClothingOuterArmorBaseStoormVsu
-    shoes: ClothingShoesBootsMercFilled
+    shoes: ClothingShoesBootsMerc
     belt: ClothingBeltMercWebbing
     neck: PovazkaBlue
     mask: ClothingMaskNeckGaiter

@@ -1,0 +1,18 @@
+# ── Режим "Западный Фронт" ────────────────────────────────────────────────────
+# ВСУ против ВСРФ. Раунд завершается, когда все игроки одной команды погибают.
+- type: entity
+  id: WesternFrontRule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WesternFrontRule
+    restartDelay: 30
+    rusJobIds:
+      - WFRusDraftee
+      - WFRusRifleman
+      - WFRusMachinegunner
+      - WFRusCommander
+    ukrJobIds:
+      - WFUkrRifleman
+      - WFUkrMachinegunner
+      - WFUkrCommander
