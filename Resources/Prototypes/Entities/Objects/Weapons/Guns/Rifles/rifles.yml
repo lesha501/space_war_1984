@@ -16,7 +16,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
-    fireRate: 2
+    fireRate: 1
     selectedMode: FullAuto
     availableModes:
       - FullAuto

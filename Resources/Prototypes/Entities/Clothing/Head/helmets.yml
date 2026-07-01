@@ -622,7 +622,7 @@
   parent: ClothingHeadHelmetSwat
   id: ClothingHeadHelmetRep
   name: Шлем репортера
-  description: Не думаю что этот шлем защитит хотябы от осколков.
+  description: Не думаю что этот шлем защитит хотябы от осколков, хотя возможно вас не обнулят видь вы мирный.. Видь так?
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/tacticalREP.rsi
@@ -636,7 +636,7 @@
   parent: ClothingHeadHelmetSwat
   id: ClothingHeadHelmetRf
   name: шлем "РАТНИК"
-  description: Самый популярный шлем ратник 6Б47 в чехле.
+  description: обыкновенный шлем ратник 6Б47 в чехле.
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/tacticalUSSR.rsi
@@ -673,3 +673,19 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+
+- type: entity
+  parent: ClothingHeadHelmetSwat
+  id: ClothingHeadHelmetGostmlHelmet
+  name: шлем с Георгиевской лентой
+  description: С этой лентой деды победили Гитлера и нацизм, а ты убиваешь мирных людей в Буче, как настоящий нацист. Хотя от части ты элита видь ты почти дошел до Киева.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/gostmlHelmet.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/gostmlHelmet.rsi
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+

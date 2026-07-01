@@ -21,9 +21,9 @@
         ents: []
 
 - type: entity
-  name: china lake
+  name: РШГ
   parent: [BaseWeaponLauncher, BaseGunWieldable, BaseSyndicateContraband]
-  id: WeaponLauncherChinaLake
+  id: WeaponLauncherRHG
   description: PLOOP
   categories: [ HideSpawnMenu ]
   components:
@@ -53,7 +53,7 @@
     whitelist:
       tags:
         - Grenade
-    capacity: 3
+    capacity: 1
     proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
