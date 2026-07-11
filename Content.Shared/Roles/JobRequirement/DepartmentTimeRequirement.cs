@@ -34,15 +34,20 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         var playtime = TimeSpan.Zero;
 
         // Check all jobs' departments
-        var department = protoManager.Index(Department);
+        if (!protoManager.TryIndex<DepartmentPrototype>(Department, out var department))
+            return true;
+
         var jobs = department.Roles;
         string proto;
 
         // Check all jobs' playtime
         foreach (var other in jobs)
         {
+            if (!protoManager.TryIndex<JobPrototype>(other, out var job))
+                continue;
+
             // The schema is stored on the Job role but we want to explode if the timer isn't found anyway.
-            proto = protoManager.Index(other).PlayTimeTracker;
+            proto = job.PlayTimeTracker;
 
             playTimes.TryGetValue(proto, out var otherTime);
             playtime += otherTime;

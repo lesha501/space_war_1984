@@ -15,7 +15,7 @@ using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Playtime;
 using Content.Client.Replay;
-using Content.Client.Atlanta.Score; // Atlanta
+
 using Content.Client.Screenshot;
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
@@ -67,7 +67,7 @@ namespace Content.Client.IoC
             collection.Register<ClientsidePlaytimeTrackingManager>();
             collection.Register<ClientFeedbackManager>();
             collection.Register<ISharedFeedbackManager, ClientFeedbackManager>();
-            collection.Register<ScoreSystem>(); // Atlanta
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
@@ -52,7 +52,15 @@ public abstract class SharedJobSystem : EntitySystem
     public string GetJobPrototype(string trackerProto)
     {
         DebugTools.Assert(_prototypes.HasIndex<PlayTimeTrackerPrototype>(trackerProto));
-        return _inverseTrackerLookup[trackerProto];
+        return _inverseTrackerLookup.GetValueOrDefault(trackerProto) ?? string.Empty;
+    }
+
+    /// <summary>
+    /// Tries to get the corresponding Job Prototype to a <see cref="PlayTimeTrackerPrototype"/>
+    /// </summary>
+    public bool TryGetJobPrototype(string trackerProto, [NotNullWhen(true)] out string? jobProto)
+    {
+        return _inverseTrackerLookup.TryGetValue(trackerProto, out jobProto);
     }
 
     /// <summary>

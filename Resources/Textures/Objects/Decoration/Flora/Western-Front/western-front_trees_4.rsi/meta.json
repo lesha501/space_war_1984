@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "By Western Front",
+    "size": {
+        "x": 132,
+        "y": 160
+    },
+    "states": [
+        {
+            "name": "tree01"
+        }
+    ]
+}

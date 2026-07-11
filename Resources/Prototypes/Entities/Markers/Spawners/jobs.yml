@@ -605,6 +605,7 @@
   - type: SpawnPoint
     job_id: WFRusDraftee
   - type: Sprite
+    sprite: Markers/cross.rsi
     layers:
       - state: red
 
@@ -616,6 +617,7 @@
   - type: SpawnPoint
     job_id: WFRusRifleman
   - type: Sprite
+    sprite: Markers/cross.rsi
     layers:
       - state: red
 
@@ -627,6 +629,7 @@
   - type: SpawnPoint
     job_id: WFRusMachinegunner
   - type: Sprite
+    sprite: Markers/cross.rsi
     layers:
       - state: red
 
@@ -638,6 +641,7 @@
   - type: SpawnPoint
     job_id: WFRusCommander
   - type: Sprite
+    sprite: Markers/cross.rsi
     layers:
       - state: red
 
@@ -651,6 +655,7 @@
   - type: SpawnPoint
     job_id: WFUkrRifleman
   - type: Sprite
+    sprite: Markers/cross.rsi
     layers:
       - state: blue
 
@@ -662,6 +667,7 @@
   - type: SpawnPoint
     job_id: WFUkrMachinegunner
   - type: Sprite
+    sprite: Markers/cross.rsi
     layers:
       - state: blue
 
@@ -673,6 +679,7 @@
   - type: SpawnPoint
     job_id: WFUkrCommander
   - type: Sprite
+    sprite: Markers/cross.rsi
     layers:
       - state: blue
 

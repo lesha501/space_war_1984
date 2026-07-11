@@ -14,11 +14,13 @@
   id: WFRusDrafteeGear
   equipment:
     head: ClothingHeadHelmetWhite
-    innerClothing: ClothingUniformJumpsuitOldForm
+    jumpsuit: ClothingUniformJumpsuitOldForm
     outerClothing: ClothingOuterArmorBaseRatnik
-    shoes: ClothingShoesBootsMerc
+    shoes: ClothingShoesBootsJackFilled
+    gloves: ClothingHandsGlovesColorBlack
     belt: ClothingBeltMercWebbing
     neck: PovazkaWhite
+    back: ClothingBackpackDuffel
   storage:
     belt:
     - WeaponRifleInteQAKM
@@ -48,12 +50,14 @@
   id: WFRusRiflemanGear
   equipment:
     head: ClothingHeadHelmetRf
-    innerClothing: ClothingUniformJumpsuitRuForm
+    jumpsuit: ClothingUniformJumpsuitRuForm
     outerClothing: ClothingOuterArmorBaseRatnik
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsJackFilled
+    gloves: ClothingHandsGlovesColorBlack
     belt: ClothingBeltSecurityWebbing
     neck: PovazkaWhite
     mask: ClothingMaskNeckGaiter
+    back: ClothingBackpackDuffel
   storage:
     belt:
     - WeaponRifleInteQAKM
@@ -64,7 +68,7 @@
     - MagazineRifleLight762x39
     - GrenadeShrapnel
     - GrenadeShrapnel
-    - Bandage
+    - Gauze
 
 
 # ВС РФ — Пулеметчик (5 часов на стрелке)
@@ -87,19 +91,20 @@
   id: WFRusMachinegunnerGear
   equipment:
     head: ClothingHeadHelmetWhite
-    innerClothing: ClothingUniformJumpsuitBushlat
+    jumpsuit: ClothingUniformJumpsuitBushlat
     outerClothing: ClothingOuterVestWebMerc
-    shoes: ClothingShoesBootsMerc
+    shoes: ClothingShoesBootsMercFilled
     belt: ClothingBeltMercWebbing
     gloves: ClothingHandsMercGlovesCombat
     neck: PovazkaWhite
+    back: ClothingBackpackDuffel
   storage:
     belt:
     - WeaponLightMachineGunRPD
     - MagazineLightMachineGun762x39
     - MagazineLightMachineGun762x39
     - MagazineLightMachineGun762x39
-    - Bandage
+    - Gauze
 
 
 # ВС РФ — Командир (10 часов на стрелке + 5 на пулеметчике, лимит 1)
@@ -126,11 +131,12 @@
   id: WFRusCommanderGear
   equipment:
     head: ClothingHeadHelmetWhite
-    innerClothing: ClothingUniformJumpsuitOldForm
+    jumpsuit: ClothingUniformJumpsuitOldForm
     outerClothing: ClothingOuterVestWebMerc
-    shoes: ClothingShoesBootsMerc
+    shoes: ClothingShoesBootsMercFilled
     belt: ClothingBeltMercWebbing
     neck: PovazkaWhite
+    back: ClothingBackpackDuffel
   storage:
     belt:
     - WeaponAKMSRifle
@@ -140,4 +146,4 @@
     - MagazineRifleLight762x39
     - GrenadeShrapnel
     - GrenadeShrapnel
-    - Bandage
+    - Gauze

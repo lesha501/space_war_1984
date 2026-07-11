@@ -1,4 +1,5 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Atlanta.GameTicking.Rules.Components;
 
@@ -7,6 +8,9 @@ public sealed partial class WesternFrontRuleComponent : Component
 {
     [DataField]
     public WesternFrontGameState GameState = WesternFrontGameState.WaitingForBattle;
+
+    [DataField]
+    public ProtoId<Content.Shared.Parallax.Biomes.BiomeTemplatePrototype> BiomeTemplate = "Grasslands";
 
     /// <summary>Живые игроки команды ВСРФ.</summary>
     [DataField]

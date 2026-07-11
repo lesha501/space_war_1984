@@ -79,8 +79,14 @@ public sealed partial class ProfilePreviewSpriteView
     private JobPrototype GetPreferredJob(HumanoidCharacterProfile profile)
     {
         var highPriorityJob = profile.JobPriorities.FirstOrDefault(p => p.Value == JobPriority.High).Key;
-        // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract (what is resharper smoking?)
-        return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
+        var id = highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob;
+        
+        if (!_prototypeManager.TryIndex<JobPrototype>(id, out var job))
+        {
+            job = _prototypeManager.Index<JobPrototype>(SharedGameTicker.FallbackOverflowJob);
+        }
+        
+        return job;
     }
 
     private void GiveDummyLoadout(RoleLoadout? roleLoadout)

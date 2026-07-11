@@ -18,11 +18,12 @@
   id: WFReporterGear
   equipment:
     head: ClothingHeadHatFedoraGrey
-    innerClothing: ClothingUniformJumpsuitSecBlue
+    jumpsuit: ClothingUniformJumpsuitSecBlue
     outerClothing: ClothingOuterVestPress
     shoes: ClothingShoesColorWhite
+    back: ClothingBackpack
   storage:
     back:
-    - Bandage
-    - Bandage
+    - Gauze
+    - Gauze
     - MicrophoneInstrument
