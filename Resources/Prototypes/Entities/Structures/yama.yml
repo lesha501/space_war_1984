@@ -1,0 +1,11 @@
+- type: entity
+  id: CraterExplosion
+  name: воронка от взрыва
+  description: Воронка от ракетного или гранатного взрыва.
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/Western-Front/yama.rsi
+    state: krator
+    drawdepth: FloorObjects
+  - type: Yama

@@ -352,6 +352,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
+        // western-front: spawn crater at epicenter
+        EntityManager.SpawnEntity("CraterExplosion", pos);
+
         // camera shake
         CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);
 

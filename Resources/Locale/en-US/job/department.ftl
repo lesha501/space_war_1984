@@ -9,3 +9,7 @@ department-Science = Научный отдел
 department-Silicon = Синтетики
 department-Specific = На определённых станциях
 department-Unknown = Неизвестно
+
+department-WFRussian = ВСРФ
+department-WFUkrainian = ВСУ
+department-WFPress = Пресса

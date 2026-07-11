@@ -1,0 +1,29 @@
+- type: gameMapPool
+  id: WesternFrontMapPool
+  maps:
+  - WesternFrontMap
+
+- type: gameMap
+  id: WesternFrontMap
+  mapName: Western Front
+  mapPath: /Maps/Test/test.yml
+  minPlayers: 1
+  maxRandomOffset: 0
+  randomRotation: false
+  stations:
+    WesternFrontStation:
+      stationProto: WesternFrontStation
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: "Western Front"
+      - type: StationJobs
+        availableJobs:
+          WFRusDraftee: [-1, -1]
+          WFRusRifleman: [-1, -1]
+          WFRusMachinegunner: [-1, -1]
+          WFRusCommander: [-1, -1]
+          WFUkrRifleman: [-1, -1]
+          WFUkrMachinegunner: [-1, -1]
+          WFUkrCommander: [-1, -1]
+          WFReporter: [2, 2]
+

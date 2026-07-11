@@ -3,7 +3,7 @@ using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
-using Content.Client.Atlanta.Score; // Atlanta
+
 using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
@@ -31,7 +31,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
         [Dependency] private readonly IPrototypeManager _protoMan = default!;
-        [Dependency] private readonly ScoreSystem _scoreSystem = default!; // Atlanta
+
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -78,7 +78,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
 
-            _scoreSystem.LoadScoreboard(); // Atlanta
+
         }
 
         protected override void Shutdown()

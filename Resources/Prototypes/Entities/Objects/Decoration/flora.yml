@@ -469,3 +469,43 @@
   - type: Sprite
     sprite: Objects/Decoration/Flora/Western-Front/western-front_trees_2.rsi
     state: tree01
+
+- type: entity
+  parent: BaseTree
+  id: FloraTreeWesternTree3
+  name: дерево
+  description: Старое дерево, которое повидала многое
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/Western-Front/western-front_trees_3.rsi
+    state: tree01
+
+- type: entity
+  parent: BaseTree
+  id: FloraTreeWesternTree4
+  name: дерево
+  description: Старое дерево, которое повидала многое
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/Western-Front/western-front_trees_4.rsi
+    state: tree01
+
+- type: entity
+  parent: BaseTree
+  id: FloraTreeWesternTree5
+  name: маленькое дерево
+  description: Молодое дерево
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/Western-Front/western-front_trees_5.rsi
+    state: tree01
+
+- type: entity
+  parent: BaseTree
+  id: FloraTreeWesternTree6
+  name: маленькое дерево
+  description: Молодое дерево
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/Western-Front/western-front_trees_6.rsi
+    state: tree01

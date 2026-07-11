@@ -1,0 +1,21 @@
+# Минимальная станция для режима Западный Фронт.
+# Только спавн игроков по ролям, без шаттлов/центкома/эвакуации и т.д.
+- type: entity
+  id: WesternFrontStation
+  parent:
+    - BaseStation
+    - BaseStationJobsSpawning
+    - BaseStationRecords
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
+    - type: StationJobs
+      availableJobs:
+        WFRusDraftee: [-1, -1]
+        WFRusRifleman: [-1, -1]
+        WFRusMachinegunner: [-1, -1]
+        WFRusCommander: [-1, -1]
+        WFUkrRifleman: [-1, -1]
+        WFUkrMachinegunner: [-1, -1]
+        WFUkrCommander: [-1, -1]
+        WFReporter: [2, 2]

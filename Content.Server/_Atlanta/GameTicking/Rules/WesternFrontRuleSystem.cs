@@ -11,7 +11,18 @@ using Content.Shared.Roles.Jobs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
-
+using Content.Server.Parallax;
+using Content.Shared.Parallax.Biomes;
+using Robust.Shared.Map;
+using Content.Server.Station.Systems;
+using Content.Shared.Station.Components;
+using Content.Server.Spawners.EntitySystems;
+using Robust.Shared.Prototypes;
+using Content.Server.GameTicking;
+using Content.Server.GameTicking.Events;
+using System.Linq;
+using System.Numerics;
+using Content.Server.Spawners.Components;
 namespace Content.Server.Atlanta.GameTicking.Rules;
 
 public sealed class WesternFrontRuleSystem : GameRuleSystem<WesternFrontRuleComponent>
@@ -21,13 +32,65 @@ public sealed class WesternFrontRuleSystem : GameRuleSystem<WesternFrontRuleComp
     [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ServerGlobalSoundSystem _globalSound = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, before: new []{ typeof(SpawnPointSystem) });
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned);
         SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
+    }
+
+    private void OnRoundStarting(RoundStartingEvent ev)
+    {
+        var query = EntityQueryEnumerator<WesternFrontRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var wf, out var rule))
+        {
+            if (!GameTicker.IsGameRuleActive(uid, rule))
+                continue;
+
+            var mapId = _ticker.DefaultMap;
+            if (!_map.MapExists(mapId))
+                continue;
+
+            var mapUid = _map.GetMapOrInvalid(mapId);
+
+            // Biome generation removed to allow ready-made map loading
+
+            EntityUid? stationUid = null;
+            var stationQuery = EntityQueryEnumerator<StationDataComponent>();
+            while (stationQuery.MoveNext(out var station, out _))
+            {
+                if (Prototype(station)?.ID == "WesternFrontStation")
+                {
+                    stationUid = station;
+                    break;
+                }
+            }
+
+            if (stationUid == null)
+            {
+                stationUid = Spawn("WesternFrontStation", MapCoordinates.Nullspace);
+            }
+
+            if (stationUid != null)
+            {
+                var spawnPointQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+                while (spawnPointQuery.MoveNext(out var spUid, out _, out var xform))
+                {
+                    if (xform.MapID == mapId)
+                    {
+                        _stationSystem.SetStation(spUid, stationUid.Value);
+                    }
+                }
+            }
+        }
     }
 
     // ── Таймер грейс-периода ──────────────────────────────────────────────────
@@ -153,5 +216,64 @@ public sealed class WesternFrontRuleSystem : GameRuleSystem<WesternFrontRuleComp
 
         var roundEnd = EntityManager.EntitySysManager.GetEntitySystem<RoundEndSystem>();
         roundEnd.EndRound(wf.RestartDelay);
+    }
+
+    private void OnPlayerSpawning(PlayerSpawningEvent args)
+    {
+        if (args.SpawnResult != null)
+            return;
+
+        // Check if there are any spawn points for this job on the station
+        var queryPoints = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+        bool hasSpawnPoint = false;
+        while (queryPoints.MoveNext(out var spUid, out var spawnPoint, out var xform))
+        {
+            if (spawnPoint.Job == args.Job && _stationSystem.GetOwningStation(spUid, xform) == args.Station)
+            {
+                hasSpawnPoint = true;
+                break;
+            }
+        }
+
+        if (hasSpawnPoint)
+            return;
+
+        var query = EntityQueryEnumerator<WesternFrontRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var wf, out var rule))
+        {
+            if (!GameTicker.IsGameRuleActive(uid, rule))
+                continue;
+
+            if (args.Job == null)
+                continue;
+
+            EntityCoordinates spawnLoc;
+            var mapId = _ticker.DefaultMap;
+            var mapUid = _map.GetMapOrInvalid(mapId);
+
+            if (wf.RusJobIds.Contains(args.Job))
+            {
+                spawnLoc = new EntityCoordinates(mapUid, new Vector2(0, 0));
+            }
+            else if (wf.UkrJobIds.Contains(args.Job))
+            {
+                spawnLoc = new EntityCoordinates(mapUid, new Vector2(250, 0));
+            }
+            else if (args.Job == "WFReporter")
+            {
+                spawnLoc = new EntityCoordinates(mapUid, new Vector2(125, 0));
+            }
+            else
+            {
+                continue;
+            }
+
+            args.SpawnResult = _stationSpawning.SpawnPlayerMob(
+                spawnLoc,
+                args.Job,
+                args.HumanoidCharacterProfile,
+                args.Station);
+            return;
+        }
     }
 }

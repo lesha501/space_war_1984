@@ -86,10 +86,7 @@ entity-effect-guidebook-health-change =
                 [deals] наносит
                *[both] изменяет здоровье на
             }
-    } { $changes } { $targetPart ->
-       [All]{""}
-       *[other]  на {$targetPart}
-    }
+    } { $changes }
 
 entity-effect-guidebook-even-health-change =
     { $chance ->
@@ -105,10 +102,7 @@ entity-effect-guidebook-even-health-change =
                 [deals] равномерно наносит
                *[both] равномерно изменяет здоровье на
             }
-    } { $changes } { $targetPart ->
-       [All]{""}
-       *[other]  на {$targetPart}
-    }
+    } { $changes }
 
 entity-effect-guidebook-status-effect-old =
     { $type ->

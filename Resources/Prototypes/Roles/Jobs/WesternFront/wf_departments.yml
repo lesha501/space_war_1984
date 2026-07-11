@@ -1,8 +1,8 @@
 # Департаменты western-front
 - type: department
   id: WFRussian
-  name: ВСРФ
-  description: Вооружённые силы Российской Федерации
+  name: department-WFRussian
+  description: department-WFRussian-description
   color: "#CC0000"
   roles:
   - WFRusDraftee
@@ -12,8 +12,8 @@
 
 - type: department
   id: WFUkrainian
-  name: ВСУ
-  description: Вооружённые силы Украины
+  name: department-WFUkrainian
+  description: department-WFUkrainian-description
   color: "#0057B7"
   roles:
   - WFUkrRifleman
@@ -22,8 +22,8 @@
 
 - type: department
   id: WFPress
-  name: Пресса
-  description: Пресса
+  name: department-WFPress
+  description: department-WFPress-description
   color: "#FFFFFF"
   roles:
   - WFReporter
