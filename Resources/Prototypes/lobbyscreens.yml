@@ -1,71 +1,66 @@
 - type: lobbyBackground
   id: Warden
-  background: /Textures/LobbyScreens/warden.webp
+  background: /Textures/LobbyScreens/load_ahmat_dance.webp
   title: lobby-state-background-warden-title
   artist: lobby-state-background-warden-artist
 
 - type: lobbyBackground
   id: Pharmacy
-  background: /Textures/LobbyScreens/pharmacy.webp
+  background: /Textures/LobbyScreens/load_fpv_swag.webp
   title: lobby-state-background-pharmacy-title
   artist: lobby-state-background-pharmacy-artist
 
 - type: lobbyBackground
   id: SSXIV
-  background: /Textures/LobbyScreens/ssxiv.webp
+  background: /Textures/LobbyScreens/load_leoprad2_AFU.webp
   title: lobby-state-background-SSXIV-title
   artist: lobby-state-background-SSXIV-artist
 
 - type: lobbyBackground
   id: Susstation
-  background: /Textures/LobbyScreens/susstation.webp
+  background: /Textures/LobbyScreens/load_nato_marder.webp
   title: lobby-state-background-susstation-title
   artist: lobby-state-background-susstation-artist
 
 - type: lobbyBackground
   id: SkellyVsTheRev
-  background: /Textures/LobbyScreens/skellyvstherev.webp
+  background: /Textures/LobbyScreens/load_russian_ukrain_volunteer.webp
   title: lobby-state-background-skellyvstherev-title
   artist: lobby-state-background-skellyvstherev-artist
 
 - type: lobbyBackground
   id: Doomed
-  background: /Textures/LobbyScreens/doomed.webp
+  background: /Textures/LobbyScreens/load_russian_volunteer.webp
   title: lobby-state-background-doomed-title
   artist: lobby-state-background-doomed-artist
 
 - type: lobbyBackground
   id: Blueprint
-  background: /Textures/LobbyScreens/blueprint.webp
+  background: /Textures/LobbyScreens/load_sudsha.webp
   title: lobby-state-background-blueprint-title
   artist: lobby-state-background-blueprint-artist
 
 - type: lobbyBackground
   id: Behonker
-  background: /Textures/LobbyScreens/behonker.webp
+  background: /Textures/LobbyScreens/load_ukrainian_chief.webp
   title: lobby-state-background-behonker-title
   artist: lobby-state-background-behonker-artist
 
 - type: lobbyBackground
   id: TerminalStation
-  background: /Textures/LobbyScreens/terminalstation.webp
+  background: /Textures/LobbyScreens/load_ukrainian_kiev_street_defense.webp
   title: lobby-state-background-terminalstation-title
   artist: lobby-state-background-terminalstation-artist
 
 - type: lobbyBackground
   id: JustAWeekAway
-  background: /Textures/LobbyScreens/justaweekaway.webp
+  background: /Textures/LobbyScreens/load_wagner_in_bahmut.webp
   title: lobby-state-background-justaweekaway-title
   artist: lobby-state-background-justaweekaway-artist
 
 - type: lobbyBackground
   id: JaniShootout
-  background: /Textures/LobbyScreens/janishootout.webp
+  background: /Textures/LobbyScreens/WGN_main_front_O_6.webp
   title: lobby-state-background-janishootout-title
   artist: lobby-state-background-janishootout-artist
-
-- type: lobbyBackground
-  id: ReclaimerNuke
-  background: /Textures/LobbyScreens/reclaimer-nuke.webp
-  title: lobby-state-background-reclaimernuke-title
-  artist: lobby-state-background-reclaimernuke-artist
+  
