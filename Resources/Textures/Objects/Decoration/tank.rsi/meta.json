@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By Water Melon for Battlefron",
+  "size": {
+    "x": 512,
+    "y": 256
+  },
+  "states": [
+    {
+      "name": "icon"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseStructure
+  id: DecoTank
+  name: танк
+  description: Сломаный танк, который никуда не поедет.
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/tank.rsi
+    state: icon
+    offset: 0, 1.5 
+  - type: Transform
+    anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-5,-2,5,2"
+        mask:
+        - Impassable
+        - VaultImpassable
