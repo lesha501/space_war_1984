@@ -63,4 +63,16 @@
   background: /Textures/LobbyScreens/WGN_main_front_O_6.webp
   title: lobby-state-background-janishootout-title
   artist: lobby-state-background-janishootout-artist
+
+- type: lobbyBackground
+  id: maidan1
+  background: /Textures/LobbyScreens/maidan_rastrel1.webp
+  title: lobby-state-background-warden-title
+  artist: lobby-state-background-warden-artist
+
+- type: lobbyBackground
+  id: maidan2
+  background: /Textures/LobbyScreens/maidan_rastrel2.webp
+  title: lobby-state-background-warden-title
+  artist: lobby-state-background-warden-artist
   
