@@ -1,8 +1,8 @@
 # ВС РФ — Срочник (стартовая роль, без требований)
 - type: job
   id: WFRusDraftee
-  name: Срочник ВСРФ
-  description: Срочник ВСРФ
+  name: job-name-wf-rus-draftee
+  description: job-description-wf-rus-draftee
   playTimeTracker: JobWFRusDraftee
   startingGear: WFRusDrafteeGear
   icon: "JobIconPassenger"

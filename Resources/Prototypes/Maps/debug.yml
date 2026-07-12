@@ -11,8 +11,13 @@
           mapNameTemplate: "Empty"
         - type: StationJobs
           availableJobs:
-            Passenger: [ -1, -1 ]
-
+            WFRusDraftee: [-1, -1]
+            WFRusRifleman: [-1, -1]
+            WFRusMachinegunner: [-1, -1]
+            WFRusCommander: [1, 1]
+            WFUkrRifleman: [-1, -1]
+            WFUkrMachinegunner: [-1, -1]
+            WFUkrCommander: [1, 1]
 - type: gameMap
   id: Dev
   mapName: Dev
@@ -26,8 +31,13 @@
           mapNameTemplate: "Dev"
         - type: StationJobs
           availableJobs:
-            Captain: [ -1, -1 ]
-
+            WFRusDraftee: [-1, -1]
+            WFRusRifleman: [-1, -1]
+            WFRusMachinegunner: [-1, -1]
+            WFRusCommander: [1, 1]
+            WFUkrRifleman: [-1, -1]
+            WFUkrMachinegunner: [-1, -1]
+            WFUkrCommander: [1, 1]
 - type: gameMap
   id: TestTeg
   mapName: Test TEG
@@ -41,4 +51,10 @@
           mapNameTemplate: "TEG"
         - type: StationJobs
           availableJobs:
-            ChiefEngineer: [ -1, -1 ]
+            WFRusDraftee: [-1, -1]
+            WFRusRifleman: [-1, -1]
+            WFRusMachinegunner: [-1, -1]
+            WFRusCommander: [1, 1]
+            WFUkrRifleman: [-1, -1]
+            WFUkrMachinegunner: [-1, -1]
+            WFUkrCommander: [1, 1]

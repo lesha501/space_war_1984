@@ -11,7 +11,13 @@
           mapNameTemplate: "Meteor Arena"
         - type: StationJobs
           availableJobs:
-            Passenger: [ -1, -1 ]
+            WFRusDraftee: [-1, -1]
+            WFRusRifleman: [-1, -1]
+            WFRusMachinegunner: [-1, -1]
+            WFRusCommander: [1, 1]
+            WFUkrRifleman: [-1, -1]
+            WFUkrMachinegunner: [-1, -1]
+            WFUkrCommander: [1, 1]
 - type: gameMap
   id: dm01-entryway
   mapName: DM01 Entryway
@@ -25,4 +31,10 @@
           mapNameTemplate: "DM01 Entryway"
         - type: StationJobs
           availableJobs:
-            Passenger: [ -1, -1 ]
+            WFRusDraftee: [-1, -1]
+            WFRusRifleman: [-1, -1]
+            WFRusMachinegunner: [-1, -1]
+            WFRusCommander: [1, 1]
+            WFUkrRifleman: [-1, -1]
+            WFUkrMachinegunner: [-1, -1]
+            WFUkrCommander: [1, 1]
