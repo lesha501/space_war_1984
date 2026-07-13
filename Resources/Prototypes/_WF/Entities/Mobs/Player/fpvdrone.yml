@@ -1,0 +1,98 @@
+- type: entity
+  parent: BaseItem
+  id: FpvDroneFoldedBase
+  name: fpv drone
+  description: A compact foldable FPV drone.
+  suffix: Folded
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _WF/Mobs/Silicon/fpv.rsi
+    state: drone_folded
+  - type: Item
+    size: Normal
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 10
+        mask:
+        - ItemMask
+  - type: FpvDroneFoldable
+    unfoldDelay: 1.5
+
+- type: entity
+  parent: [ BaseMob, FlyingMobBase ]
+  id: FpvDroneBase
+  name: fpv drone
+  description: A deployed FPV drone.
+  abstract: true
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _WF/Mobs/Silicon/fpv.rsi
+    state: drone_off
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 8
+    baseWalkSpeed: 4
+  - type: FpvDrone
+  - type: DeviceLinkSink
+    ports: [ FpvDroneControl ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: FpvDroneFoldedBase
+  id: FpvDroneFolded
+  name: observation fpv drone
+  description: A foldable FPV drone optimized for observation.
+  components:
+  - type: FpvDroneFoldable
+    unfoldEntity: FpvDroneObserver
+
+- type: entity
+  parent: FpvDroneFoldedBase
+  id: FpvDroneFoldedExplosive
+  name: explosive fpv drone
+  description: A foldable FPV drone carrying an explosive charge.
+  components:
+  - type: FpvDroneFoldable
+    unfoldEntity: FpvDroneExplosive
+
+- type: entity
+  parent: FpvDroneBase
+  id: FpvDroneObserver
+  name: observation fpv drone
+  description: A deployed FPV drone configured for reconnaissance.
+
+- type: entity
+  parent: FpvDroneBase
+  id: FpvDroneExplosive
+  name: explosive fpv drone
+  description: A deployed FPV drone carrying an explosive charge.
+  components:
+  - type: FpvDroneExplosive
+    totalIntensity: 250
+    radius: 6
+    explodeActionId: ActionFpvDroneExplosive
+  - type: Explosive
+    explosionType: Default
+    maxTileIntensity: 15
