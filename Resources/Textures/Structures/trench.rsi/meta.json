@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made for Western Front",
+    "states": [
+        {
+            "name": "solo"
+        },
+        {
+            "name": "only_up"
+        },
+        {
+            "name": "only_down"
+        },
+        {
+            "name": "only_left"
+        },
+        {
+            "name": "only_right"
+        },
+        {
+            "name": "uo_and_down"
+        },
+        {
+            "name": "left_and_up"
+        },
+        {
+            "name": "up_and_right"
+        },
+        {
+            "name": "left_and_down"
+        },
+        {
+            "name": "right_and_down"
+        },
+        {
+            "name": "right_and_left"
+        },
+        {
+            "name": "up_left_down"
+        },
+        {
+            "name": "up_right_down"
+        },
+        {
+            "name": "up_right_left"
+        },
+        {
+            "name": "down_left_right"
+        },
+        {
+            "name": "all"
+        }
+    ]
+}

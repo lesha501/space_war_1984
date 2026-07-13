@@ -1,0 +1,19 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+            Title="Бумбокс"
+            MinWidth="320"
+            MinHeight="240"
+            SetSize="320 240">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8">
+        <Label Name="TrackLabel" Text="Кассета не вставлена" Align="Center" HorizontalExpand="True" />
+        <Label Name="TimeLabel" Text="00:00 / 00:00" Align="Center" HorizontalExpand="True" />
+        <Slider Name="TimeSlider" MinValue="0" MaxValue="100" HorizontalExpand="True" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8" Align="Center" HorizontalExpand="True">
+            <Label Text="Громкость:" />
+            <Slider Name="VolumeSlider" MinValue="0" MaxValue="1" MinWidth="120" Value="1.0" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8" HorizontalExpand="True" Align="Center">
+            <Button Name="PlayButton" Text="Играть" MinWidth="100" />
+            <Button Name="EjectButton" Text="Извлечь" MinWidth="100" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

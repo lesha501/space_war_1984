@@ -1,0 +1,179 @@
+- type: entity
+  id: Boombox
+  name: бумбокс
+  description: Портативный проигрыватель для аудиокассет. Ретро-стиль!
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/boombox.rsi
+    state: icon
+  - type: Boombox
+  - type: UserInterface
+    interfaces:
+      enum.BoomboxUiKey.Key:
+        type: BoomboxBoundUserInterface
+
+- type: entity
+  id: CassetteBase
+  abstract: true
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cassette.rsi
+    state: icon
+  - type: Cassette
+
+
+- type: entity
+  id: CassetteBlackSabbathParanoidSkysoundCc
+  parent: CassetteBase
+  name: аудиокассета (Black Sabbath Paranoid SkySound cc)
+  description: Аудиокассета с треком Black Sabbath Paranoid SkySound cc.
+  components:
+  - type: Cassette
+    trackName: Black Sabbath Paranoid SkySound cc
+    soundPath: /Audio/Lobby/Black_Sabbath___Paranoid__SkySound_cc_.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteBloodType
+  parent: CassetteBase
+  name: аудиокассета (blood type)
+  description: Аудиокассета с треком blood type.
+  components:
+  - type: Cassette
+    trackName: blood type
+    soundPath: /Audio/Lobby/blood_type.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteEgorbezKahSkysoundCc
+  parent: CassetteBase
+  name: аудиокассета (egorbez kah SkySound cc)
+  description: Аудиокассета с треком egorbez kah SkySound cc.
+  components:
+  - type: Cassette
+    trackName: egorbez kah SkySound cc
+    soundPath: /Audio/Lobby/egorbez___kah__SkySound_cc_.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteMcKabanchekИзраильскийСпецназ1
+  parent: CassetteBase
+  name: аудиокассета (MC Kabanchek - Израильский спецназ(1))
+  description: Аудиокассета с треком MC Kabanchek - Израильский спецназ(1).
+  components:
+  - type: Cassette
+    trackName: MC Kabanchek - Израильский спецназ(1)
+    soundPath: /Audio/Lobby/MC Kabanchek - Израильский спецназ(1).ogg
+    duration: 193
+
+- type: entity
+  id: CassetteMcKabanchek
+  parent: CassetteBase
+  name: аудиокассета (MC Kabanchek)
+  description: Аудиокассета с треком MC Kabanchek.
+  components:
+  - type: Cassette
+    trackName: MC Kabanchek
+    soundPath: /Audio/Lobby/MC_Kabanchek________.ogg
+    duration: 240
+
+- type: entity
+  id: CassettePesPatron
+  parent: CassetteBase
+  name: аудиокассета (Pes Patron)
+  description: Аудиокассета с треком Pes Patron.
+  components:
+  - type: Cassette
+    trackName: Pes Patron
+    soundPath: /Audio/Lobby/Pes_Patron.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteSeparatist
+  parent: CassetteBase
+  name: аудиокассета (separatist)
+  description: Аудиокассета с треком separatist.
+  components:
+  - type: Cassette
+    trackName: separatist
+    soundPath: /Audio/Lobby/separatist.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteSpaceAsshole
+  parent: CassetteBase
+  name: аудиокассета (space asshole)
+  description: Аудиокассета с треком space asshole.
+  components:
+  - type: Cassette
+    trackName: space asshole
+    soundPath: /Audio/Lobby/space_asshole.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteSummerAndCrossbows
+  parent: CassetteBase
+  name: аудиокассета (summer and crossbows)
+  description: Аудиокассета с треком summer and crossbows.
+  components:
+  - type: Cassette
+    trackName: summer and crossbows
+    soundPath: /Audio/Lobby/summer_and_crossbows.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteVolga
+  parent: CassetteBase
+  name: аудиокассета (Volga)
+  description: Аудиокассета с треком Volga.
+  components:
+  - type: Cassette
+    trackName: Volga
+    soundPath: /Audio/Lobby/Volga______________________.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteWagnerOrchestraBornAMusician
+  parent: CassetteBase
+  name: аудиокассета (Wagner orchestra born a musician)
+  description: Аудиокассета с треком Wagner orchestra born a musician.
+  components:
+  - type: Cassette
+    trackName: Wagner orchestra born a musician
+    soundPath: /Audio/Lobby/Wagner_orchestra_born_a_musician.ogg
+    duration: 240
+
+- type: entity
+  id: Cassette
+  parent: CassetteBase
+  name: аудиокассета (Секретный трек)
+  description: Аудиокассета с треком Секретный трек.
+  components:
+  - type: Cassette
+    trackName: Секретный трек
+    soundPath: /Audio/Lobby/___________________________________.ogg
+    duration: 240
+
+- type: entity
+  id: CassetteБайрактар1
+  parent: CassetteBase
+  name: аудиокассета (Байрактар(1))
+  description: Аудиокассета с треком Байрактар(1).
+  components:
+  - type: Cassette
+    trackName: Байрактар(1)
+    soundPath: /Audio/Lobby/Байрактар(1).ogg
+    duration: 240
+
+- type: entity
+  id: CassetteСвидетельствоОСмертиМагияСнов
+  parent: CassetteBase
+  name: аудиокассета (Свидетельство О Смерти Магия снов)
+  description: Аудиокассета с треком Свидетельство О Смерти Магия снов.
+  components:
+  - type: Cassette
+    trackName: Свидетельство О Смерти Магия снов
+    soundPath: /Audio/Lobby/Свидетельство_О_Смерти_Магия_снов.ogg
+    duration: 240
