@@ -1,0 +1,17 @@
+- type: entity
+  id: Trench
+  name: окоп
+  description: Окоп, выкопанный для укрытия от обстрелов.
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: Structures/trench.rsi
+    state: solo
+    drawdepth: FloorObjects
+  - type: Trench
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures

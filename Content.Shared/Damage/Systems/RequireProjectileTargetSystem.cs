@@ -1,6 +1,7 @@
 using Content.Shared.Damage.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Standing;
+using Content.Shared.Trench;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Events;
@@ -16,6 +17,25 @@ public sealed class RequireProjectileTargetSystem : EntitySystem
         SubscribeLocalEvent<RequireProjectileTargetComponent, PreventCollideEvent>(PreventCollide);
         SubscribeLocalEvent<RequireProjectileTargetComponent, StoodEvent>(StandingBulletHit);
         SubscribeLocalEvent<RequireProjectileTargetComponent, DownedEvent>(LayingBulletPass);
+
+        // Handle bullet bypass when inside a trench
+        SubscribeLocalEvent<InsideTrenchComponent, PreventCollideEvent>(OnTrenchPreventCollide);
+    }
+
+    private void OnTrenchPreventCollide(Entity<InsideTrenchComponent> ent, ref PreventCollideEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        var other = args.OtherEntity;
+        if (TryComp(other, out ProjectileComponent? projectile))
+        {
+            var target = CompOrNull<TargetedProjectileComponent>(other)?.Target;
+            if (target != ent.Owner)
+            {
+                args.Cancelled = true;
+            }
+        }
     }
 
     private void PreventCollide(Entity<RequireProjectileTargetComponent> ent, ref PreventCollideEvent args)
