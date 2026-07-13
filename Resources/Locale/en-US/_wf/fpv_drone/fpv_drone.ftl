@@ -1,0 +1,43 @@
+fpv-drone-ui-connection-lost = >>> СВЯЗЬ ПОТЕРЯНА <<<
+
+cm-fpv-drone-laptop-title = FPV DRONE TERMINAL
+cm-fpv-drone-laptop-place-first = Сначала поставьте ноутбук на стол!
+cm-fpv-drone-laptop-linked = Дрон привязан к ноутбуку.
+cm-fpv-drone-laptop-unlinked = Дрон отвязан от ноутбука.
+cm-fpv-drone-laptop-no-signal = Нет сигнала с дрона.
+cm-fpv-drone-laptop-control-busy = Дрон уже управляется другим оператором.
+cm-fpv-drone-laptop-capacity = Ноутбук не может привязать больше дронов.
+cm-fpv-drone-laptop-already-linked = Этот дрон уже привязан к другому ноутбуку.
+cm-fpv-drone-laptop-no-linked = Нет привязанных дронов
+cm-fpv-drone-laptop-linked-count = Привязано дронов: { count }
+cm-fpv-drone-laptop-no-selection = Дрон не выбран
+cm-fpv-drone-laptop-select-drone = Выберите дрон из списка
+cm-fpv-drone-laptop-no-operator = Оператор отсутствует
+cm-fpv-drone-laptop-take-control = ЗАНЯТЬ УПРАВЛЕНИЕ
+cm-fpv-drone-laptop-release-control = ОСВОБОДИТЬ УПРАВЛЕНИЕ
+cm-fpv-drone-laptop-feed-idle = Выберите дрон для открытия видеопотока.
+cm-fpv-drone-laptop-feed-live = ВИДЕОПОТОК АКТИВЕН
+cm-fpv-drone-laptop-signal-lost = СВЯЗЬ ПОТЕРЯНА
+cm-fpv-drone-laptop-status-controlled = ПОД УПРАВЛЕНИЕМ
+cm-fpv-drone-laptop-status-standby = В РЕЖИМЕ ОЖИДАНИЯ
+cm-fpv-drone-laptop-available = ДОСТУПНЫЕ ДРОНЫ
+cm-fpv-drone-laptop-role = РОЛЬ
+cm-fpv-drone-laptop-status = СТАТУС
+cm-fpv-drone-laptop-operator = ОПЕРАТОР
+cm-fpv-drone-laptop-health = ЦЕЛОСТНОСТЬ
+cm-fpv-drone-laptop-detonate = ДЕТОНИРОВАТЬ
+cm-fpv-drone-laptop-unlink = ОТКЛЮЧИТЬ
+cm-fpv-drone-role-explosive = Подрывной дрон
+cm-fpv-drone-role-observer = Наблюдательный дрон
+
+ent-FpvDroneFolded = Наблюдательный FPV дрон
+    .desc = FPV-дрон для наблюдения
+	
+ent-FpvDroneFoldedExplosive = Взрывной FPV дрон
+    .desc = FPV-дрон со взрывчаткой
+
+ent-FpvDroneObserver = Наблюдательный FPV дрон
+    .desc = FPV-дрон для наблюдения
+	
+ent-FpvDroneExplosive = Взрывной FPV дрон
+    .desc = FPV-дрон со взрывчаткой
