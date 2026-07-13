@@ -160,7 +160,13 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
         var sourcePorts = new List<SourcePortPrototype>();
         foreach (var port in sourceComponent.Ports)
         {
-            sourcePorts.Add(_prototypeManager.Index(port));
+            if (!_prototypeManager.TryIndex<SourcePortPrototype>(port, out var prototype))
+            {
+                Log.Error($"Device source {ToPrettyString(sourceUid)} contains invalid port prototype: {port}");
+                continue;
+            }
+
+            sourcePorts.Add(prototype);
         }
 
         return sourcePorts;
@@ -183,7 +189,13 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
         var sinkPorts = new List<SinkPortPrototype>();
         foreach (var port in sinkComponent.Ports)
         {
-            sinkPorts.Add(_prototypeManager.Index(port));
+            if (!_prototypeManager.TryIndex<SinkPortPrototype>(port, out var prototype))
+            {
+                Log.Error($"Device sink {ToPrettyString(sinkUid)} contains invalid port prototype: {port}");
+                continue;
+            }
+
+            sinkPorts.Add(prototype);
         }
 
         return sinkPorts;
@@ -311,8 +323,11 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
         RemoveSinkFromSource(sourceUid, sinkUid, sourceComponent);
         foreach (var (source, sink) in links)
         {
-            DebugTools.Assert(_prototypeManager.HasIndex<SourcePortPrototype>(source));
-            DebugTools.Assert(_prototypeManager.HasIndex<SinkPortPrototype>(sink));
+            if (!_prototypeManager.HasIndex<SourcePortPrototype>(source) || !_prototypeManager.HasIndex<SinkPortPrototype>(sink))
+            {
+                Log.Error($"Attempted to save invalid link {source}->{sink} between {ToPrettyString(sourceUid)} and {ToPrettyString(sinkUid)}");
+                continue;
+            }
 
             if (!sourceComponent.Ports.Contains(source) || !sinkComponent.Ports.Contains(sink))
                 continue;

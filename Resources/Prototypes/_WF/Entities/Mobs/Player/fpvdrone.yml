@@ -90,9 +90,9 @@
   description: A deployed FPV drone carrying an explosive charge.
   components:
   - type: FpvDroneExplosive
-    totalIntensity: 250
-    radius: 6
+    totalIntensity: 50
+    radius: 1
     explodeActionId: ActionFpvDroneExplosive
   - type: Explosive
     explosionType: Default
-    maxTileIntensity: 15
+    maxTileIntensity: 4

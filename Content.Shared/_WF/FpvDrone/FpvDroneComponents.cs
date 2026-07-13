@@ -19,6 +19,8 @@ public sealed partial class FpvDroneComponent : Component
     [DataField] public SoundSpecifier? FlyingLoopSound =
         new SoundPathSpecifier("/Audio/_WF/FpvDrone/drone_fly_loop.ogg");
 
+    [DataField] public float FlyingSoundMinSpeed = 0.1f;
+
     public EntityUid? FlyingStream;
     [DataField] [AutoNetworkedField] public float MaxRange = 50f;
     [DataField] public EntityUid? Pilot;
@@ -26,6 +28,30 @@ public sealed partial class FpvDroneComponent : Component
 
     [DataField] public SoundSpecifier? SignalLostSound =
         new SoundPathSpecifier("/Audio/_WF/FpvDrone/drone_signal_lost.ogg");
+
+    [DataField] public int MinShotsToDestroy = 1;
+
+    [DataField] public int MaxShotsToDestroy = 10;
+
+    /// <summary>
+    ///     Hits in this range are the most likely to destroy the drone.
+    /// </summary>
+    [DataField] public int PreferredMinShotsToDestroy = 2;
+
+    [DataField] public int PreferredMaxShotsToDestroy = 3;
+
+    /// <summary>
+    ///     Relative weight for preferred hit counts.
+    /// </summary>
+    [DataField] public float PreferredShotsWeight = 4f;
+
+    /// <summary>
+    ///     Relative weight for destroying the drone on the first aimed hit.
+    /// </summary>
+    [DataField] public float OneShotDestroyWeight = 0.75f;
+
+    public int ShotsUntilDestroy;
+    public int ShotsTaken;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -34,7 +60,7 @@ public sealed partial class FpvDroneExplosiveComponent : Component
     [DataField] public EntityUid? ExplodeActionEntity;
     [DataField] public EntProtoId? ExplodeActionId = "ActionFpvDroneExplosive";
     [DataField] [AutoNetworkedField] public float Radius = 5f;
-    [DataField] [AutoNetworkedField] public float TotalIntensity = 100f;
+    [DataField] [AutoNetworkedField] public float TotalIntensity = 50f;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

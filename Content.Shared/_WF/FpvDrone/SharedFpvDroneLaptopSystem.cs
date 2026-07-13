@@ -73,10 +73,9 @@ public abstract class SharedFpvDroneLaptopSystem : EntitySystem
             if (!HasComp<PlaceableSurfaceComponent>(parent))
                 continue;
 
-            if (!TryComp(parent, out TransformComponent? parentXform) || !parentXform.Anchored)
-            {
-                TransformSystem.AttachToGridOrMap(uid);
-            }
+            // Previously we detached laptops from unanchored surfaces.
+            // This caused the UI to instantly close when a laptop was placed on a movable table.
+            // Keeping the laptop parented to the surface is fine and makes interaction stable.
         }
     }
 
@@ -167,14 +166,12 @@ public abstract class SharedFpvDroneLaptopSystem : EntitySystem
     {
         var parent = Transform(laptop).ParentUid;
         var onSurface = HasComp<PlaceableSurfaceComponent>(parent);
-        var parentAnchored = TryComp(parent, out TransformComponent? parentXform) && parentXform.Anchored;
-
-        laptop.Comp.IsOpen = onSurface && parentAnchored;
-        SetPowered(laptop, onSurface && parentAnchored);
+        laptop.Comp.IsOpen = onSurface;
+        SetPowered(laptop, onSurface);
         UpdateLaptopVisuals(laptop);
         Dirty(laptop);
 
-        if (Net.IsServer && (!onSurface || !parentAnchored))
+        if (Net.IsServer && !onSurface)
             Ui.CloseUi(laptop.Owner, FpvDroneLaptopUiKey.Key);
     }
 

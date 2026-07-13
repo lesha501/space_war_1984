@@ -5,7 +5,7 @@
   description: A rugged military laptop for controlling FPV drones. Place on a table to operate.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Devices/sentrycomp.rsi
+    sprite: _WF/Objects/Devices/sentrycomp.rsi
     layers:
     - state: sentrycomp_cl
       map: ["enum.FpvDroneLaptopVisualLayers.Base"]

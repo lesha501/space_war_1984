@@ -4,11 +4,16 @@ using Content.Shared._WF.FpvDrone;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
+using Content.Shared.Projectiles;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Random;
 
 namespace Content.Server._WF.FpvDrone;
 
@@ -21,6 +26,7 @@ public sealed class FpvDroneSystem : EntitySystem
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private readonly HashSet<EntityUid> _contacts = [];
@@ -32,6 +38,7 @@ public sealed class FpvDroneSystem : EntitySystem
         SubscribeLocalEvent<FpvDroneComponent, ComponentStartup>(OnDroneStartup);
         SubscribeLocalEvent<FpvDroneComponent, FpvDroneEjectEvent>(OnDroneEject);
         SubscribeLocalEvent<FpvDroneComponent, EntityTerminatingEvent>(OnDroneTerminating);
+        SubscribeLocalEvent<FpvDroneComponent, PreventCollideEvent>(OnDronePreventCollide);
 
         SubscribeLocalEvent<FpvDroneExplosiveComponent, ComponentInit>(OnExplosiveInit);
         SubscribeLocalEvent<FpvDroneExplosiveComponent, FpvDroneExplosiveEvent>(OnExplosiveAction);
@@ -72,6 +79,82 @@ public sealed class FpvDroneSystem : EntitySystem
     private void OnDroneStartup(EntityUid uid, FpvDroneComponent component, ComponentStartup args)
     {
         component.EjectAction = _action.AddAction(uid, component.EjectActionPrototypeId);
+        component.ShotsUntilDestroy = RollShotsUntilDestroy(component);
+        component.ShotsTaken = 0;
+    }
+
+    private int RollShotsUntilDestroy(FpvDroneComponent component)
+    {
+        var minShots = Math.Max(1, component.MinShotsToDestroy);
+        var maxShots = Math.Max(minShots, component.MaxShotsToDestroy);
+        var preferredMin = Math.Clamp(component.PreferredMinShotsToDestroy, minShots, maxShots);
+        var preferredMax = Math.Clamp(component.PreferredMaxShotsToDestroy, preferredMin, maxShots);
+
+        var totalWeight = 0f;
+        for (var shots = minShots; shots <= maxShots; shots++)
+            totalWeight += GetShotsToDestroyWeight(component, shots, preferredMin, preferredMax);
+
+        if (totalWeight <= 0f)
+            return maxShots;
+
+        var roll = _random.NextFloat(totalWeight);
+        for (var shots = minShots; shots <= maxShots; shots++)
+        {
+            roll -= GetShotsToDestroyWeight(component, shots, preferredMin, preferredMax);
+            if (roll <= 0f)
+                return shots;
+        }
+
+        return maxShots;
+    }
+
+    private static float GetShotsToDestroyWeight(
+        FpvDroneComponent component,
+        int shots,
+        int preferredMin,
+        int preferredMax)
+    {
+        if (shots == 1)
+            return Math.Max(0f, component.OneShotDestroyWeight);
+
+        if (shots >= preferredMin && shots <= preferredMax)
+            return Math.Max(0f, component.PreferredShotsWeight);
+
+        return 1f;
+    }
+
+    private void OnDronePreventCollide(EntityUid uid, FpvDroneComponent component, ref PreventCollideEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (!TryComp<ProjectileComponent>(args.OtherEntity, out var projectile) || projectile.ProjectileSpent)
+            return;
+
+        if (component.ShotsUntilDestroy <= 0)
+            component.ShotsUntilDestroy = RollShotsUntilDestroy(component);
+
+        component.ShotsTaken++;
+
+        if (component.ShotsTaken < component.ShotsUntilDestroy)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        if (TryComp<FpvDroneExplosiveComponent>(uid, out var explosive))
+            TryTriggerExplosive(uid, explosive);
+        else
+        {
+            ReturnPilotToBody(uid, component, true);
+            QueueDel(uid);
+        }
+
+        projectile.ProjectileSpent = true;
+        if (projectile.DeleteOnCollide)
+            QueueDel(args.OtherEntity);
+
+        args.Cancelled = true;
     }
 
     private void OnDroneEject(EntityUid uid, FpvDroneComponent component, FpvDroneEjectEvent args)
@@ -107,6 +190,15 @@ public sealed class FpvDroneSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        var flyingQuery = EntityQueryEnumerator<FpvDroneComponent, PhysicsComponent, InputMoverComponent>();
+        while (flyingQuery.MoveNext(out var uid, out var drone, out var physics, out var mover))
+        {
+            if (TerminatingOrDeleted(uid))
+                continue;
+
+            UpdateFlyingSound(uid, drone, physics, mover);
+        }
 
         var query = EntityQueryEnumerator<FpvDroneComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var drone, out var droneXform))
@@ -226,14 +318,30 @@ public sealed class FpvDroneSystem : EntitySystem
         component.Pilot = user;
         component.SignalLost = false;
 
-        if (component is { FlyingLoopSound: not null, FlyingStream: null })
-        {
-            component.FlyingStream = _audio.PlayPvs(component.FlyingLoopSound, drone,
-                AudioParams.Default.WithLoop(true).WithVolume(-5f))?.Entity;
-        }
-
         Dirty(drone, component);
         return true;
+    }
+
+    private void UpdateFlyingSound(
+        EntityUid uid,
+        FpvDroneComponent drone,
+        PhysicsComponent physics,
+        InputMoverComponent mover)
+    {
+        var minSpeedSq = drone.FlyingSoundMinSpeed * drone.FlyingSoundMinSpeed;
+        var moving = mover.HasDirectionalMovement ||
+                     mover.WishDir.LengthSquared() > minSpeedSq ||
+                     physics.LinearVelocity.LengthSquared() > minSpeedSq;
+
+        if (moving && drone.FlyingLoopSound != null && drone.FlyingStream == null)
+        {
+            drone.FlyingStream = _audio.PlayPvs(drone.FlyingLoopSound, uid,
+                AudioParams.Default.WithLoop(true).WithVolume(-5f))?.Entity;
+            return;
+        }
+
+        if (!moving && drone.FlyingStream != null)
+            drone.FlyingStream = _audio.Stop(drone.FlyingStream);
     }
 
     public bool StopRemoteControl(EntityUid drone, EntityUid? expectedPilot = null, bool isSignalLost = false, FpvDroneComponent? component = null)
