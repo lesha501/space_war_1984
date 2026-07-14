@@ -1,0 +1,52 @@
+- type: entity
+  id: WeaponMortar
+  parent: BaseStructure
+  name: артиллерийский миномет
+  description: Тяжелая огневая точка. Заряжается снарядами вручную, бьет точно по координатам наводчика. Можно носить в руках и ставить на место.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/pipebomb.rsi
+    state: icon
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Item
+    size: Ginormous
+  - type: Anchorable
+  - type: UserInterface
+    interfaces:
+      enum.Content.Shared.Mortar.MortarUiKey.Key:
+        type: MortarBoundUserInterface
+  - type: ActivatableUI
+    key: enum.Content.Shared.Mortar.MortarUiKey.Key
+  - type: Mortar
+    allowedShellPrototype: MortarShellItem
+    cooldown: 5
+    fireDelay: 10
+    whistleDelay: 5
+    fireSound:
+      path: /Audio/_WF/Mortar/the-sound-of-a-shot-and-explosion-from-a-mortar.ogg
+    incomingSound:
+      path: /Audio/Effects/space_wind.ogg
+
+- type: entity
+  id: MortarShellItem
+  parent: BaseItem
+  name: фугасный снаряд миномета
+  description: Тяжелый артиллерийский выстрел. Опасен при детонации. Вставьте в ствол миномета для зарядки.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/pipebomb.rsi
+    state: icon
+  - type: Item
+    size: Normal 

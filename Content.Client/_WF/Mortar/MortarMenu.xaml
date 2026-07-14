@@ -1,0 +1,22 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               x:Class="Content.Client._WF.Mortar.MortarMenu"
+               Title="Управление Минометом"
+               MinWidth="250"
+               MinHeight="180">
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="10">
+
+        <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+            <Label Text="Координата X:" SetWidth="100"/>
+            <LineEdit Name="XInput" HorizontalExpand="True" PlaceHolder="X..."/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+            <Label Text="Координата Y:" SetWidth="100"/>
+            <LineEdit Name="YInput" HorizontalExpand="True" PlaceHolder="Y..."/>
+        </BoxContainer>
+
+        <Button Name="FireButton" Text="ВЫСТРЕЛ" HorizontalExpand="True" StyleClasses="ButtonCaution"/>
+
+    </BoxContainer>
+</DefaultWindow>
