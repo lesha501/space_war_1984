@@ -2,7 +2,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.GameObjects;
 using System;
 
-namespace Content.Shared.Mortar
+namespace Content.Shared._WF.Mortar
 {
     [Serializable, NetSerializable]
     public enum MortarUiKey : byte

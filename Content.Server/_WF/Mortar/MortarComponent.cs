@@ -30,5 +30,8 @@ namespace Content.Server.Mortar
 
         [DataField("incomingSound")]
         public SoundSpecifier? IncomingSound;
+
+        [DataField("scatter")]
+        public float Scatter = 5f;
     }
 }
