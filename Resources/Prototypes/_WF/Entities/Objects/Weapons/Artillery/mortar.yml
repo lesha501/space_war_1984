@@ -1,0 +1,78 @@
+- type: entity
+  id: MortarFoldedItem
+  parent: BaseItem
+  name: миномет
+  description: Переносной артиллерийский миномет.
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Weapons/mortar.rsi
+    state: mortar_m402_carry
+  - type: Item
+    size: Ginormous
+    heldPrefix: mortar
+
+- type: entity
+  id: WeaponMortar
+  parent: BaseStructure
+  name: артиллерийский миномет
+  description: Тяжелая огневая точка.
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Weapons/mortar.rsi
+    layers:
+    - state: mortar_m402
+      map: ["MortarLayer"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Item
+    size: Ginormous
+  - type: Anchorable
+  - type: UserInterface
+    interfaces:
+      enum.Content.Shared._WF.Mortar.MortarUiKey.Key:
+        type: MortarBoundUserInterface
+  - type: ActivatableUI
+    key: enum.Content.Shared._WF.Mortar.MortarUiKey.Key
+  - type: Mortar
+    allowedShellPrototype: MortarShellItem
+    cooldown: 5
+    fireDelay: 10
+    whistleDelay: 5
+    fireSound:
+      path: /Audio/_WF/Mortar/the-sound-of-a-shot-and-explosion-from-a-mortar.ogg
+    incomingSound:
+      path: /Audio/Effects/space_wind.ogg
+    scatter: 5
+  - type: MortarFoldable
+    foldDelay: 3
+    foldedEntity: MortarFoldedItem
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MortarVisuals.Firing:
+        MortarLayer:
+          "True": { state: mortar_m402_fire }
+          "False": { state: mortar_m402 }
+
+- type: entity
+  id: MortarShellItem
+  parent: BaseItem
+  name: фугасный снаряд миномета
+  description: Фугасный снаряд. 
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Weapons/mortar.rsi
+    state: mortar_ammo_he
+  - type: Item
+    size: Normal
