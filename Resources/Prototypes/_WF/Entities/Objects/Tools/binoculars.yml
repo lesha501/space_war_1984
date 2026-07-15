@@ -1,0 +1,10 @@
+- type: entity
+  id: WFBinoculars
+  parent: Binoculars 
+  name: целеуказатель
+  description: Оптический прибор для наводки.
+  components:
+  - type: Binoculars
+  - type: EyeCursorOffset
+    maxOffset: 70
+    pvsIncrease: 1.5
