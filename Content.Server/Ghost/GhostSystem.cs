@@ -98,6 +98,7 @@ namespace Content.Server.Ghost
 
             SubscribeNetworkEvent<GhostWarpsRequestEvent>(OnGhostWarpsRequest);
             SubscribeNetworkEvent<GhostReturnToBodyRequest>(OnGhostReturnToBodyRequest);
+            SubscribeNetworkEvent<GhostReturnToLobbyRequest>(OnGhostReturnToLobbyRequest);
             SubscribeNetworkEvent<GhostWarpToTargetRequestEvent>(OnGhostWarpToTargetRequest);
             SubscribeNetworkEvent<GhostnadoRequestEvent>(OnGhostnadoRequest);
 
@@ -286,6 +287,27 @@ namespace Content.Server.Ghost
             }
 
             _mind.UnVisit(actor.PlayerSession);
+        }
+
+        private void OnGhostReturnToLobbyRequest(GhostReturnToLobbyRequest msg, EntitySessionEventArgs args)
+        {
+            if (args.SenderSession.AttachedEntity is not {Valid: true} attached
+                || !_ghostQuery.HasComp(attached))
+            {
+                Log.Warning($"User {args.SenderSession.Name} sent an invalid {nameof(GhostReturnToLobbyRequest)}");
+                return;
+            }
+
+            if (_minds.TryGetMind(attached, out var mindId, out var mind))
+            {
+                if (mind.VisitingEntity != default)
+                    _mind.UnVisit(mindId, mind: mind);
+                else
+                    _mind.TransferTo(mindId, null, mind: mind);
+            }
+
+            QueueDel(attached);
+            _gameTicker.PlayerJoinLobby(args.SenderSession);
         }
 
         #region Warp

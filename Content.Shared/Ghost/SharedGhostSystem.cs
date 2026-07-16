@@ -189,6 +189,14 @@ namespace Content.Shared.Ghost
     }
 
     /// <summary>
+    /// A client to server request for their ghost to return to the lobby
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class GhostReturnToLobbyRequest : EntityEventArgs
+    {
+    }
+
+    /// <summary>
     /// A server to client update with the available ghost role count
     /// </summary>
     [Serializable, NetSerializable]
